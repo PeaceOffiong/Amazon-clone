@@ -1,13 +1,7 @@
 <template>
   <section>
+    <Navbar/>
     <div class="entire-container">
-      <div class="img-container">
-        <img
-          src="https://img.etimg.com/thumb/msid-59738992,width-640,resizemode-4,imgsize-25499/amazon.jpg"
-          alt="Logo"
-        />
-      </div>
-
       <div class="box-container">
         <h3>Sign in</h3>
         <form @submit.prevent="handleSubmit">
@@ -44,6 +38,7 @@
 </template>
 
 <script setup>
+import Navbar from "../components/navBar.vue"
 import router from "@/router";
 import users from "../assets/users";
 import { ref } from "vue";

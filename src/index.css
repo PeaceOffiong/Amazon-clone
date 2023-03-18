@@ -4,6 +4,8 @@
     margin: 0;
     text-decoration: none;
     list-style: none;
+        font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+                "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
 
 section {
@@ -21,7 +23,7 @@ section {
 }
 
 .entire-container {
-    height: inherit;
+    height: 80vh;
     width: 350px;
     overflow: hidden;
 }

@@ -1,13 +1,7 @@
 <template>
   <section>
+    <Navbar/>
     <div class="entire-container">
-      <div class="img-container">
-        <img
-          src="https://img.etimg.com/thumb/msid-59738992,width-640,resizemode-4,imgsize-25499/amazon.jpg"
-          alt="Logo"
-        />
-      </div>
-
       <div class="box-container">
         <h3>Create account</h3>
         <form @submit.prevent="handleSubmit">
@@ -44,7 +38,7 @@
           </p>
           <div class="lower-section2"></div>
           <p class="help">
-            Already have an account? <RouterLink to="/">Sign in</RouterLink>
+            Already have an account? <RouterLink to="/" class="signIn">Sign in</RouterLink>
             <br />
             Buying for work? Create a free business account<br />
           </p>
@@ -56,6 +50,7 @@
 </template>
 
 <script setup>
+import Navbar from "../components/navBar.vue"
 import router from "@/router";
 import { reactive, ref } from "vue";
 import users from "../assets/users";
@@ -122,5 +117,8 @@ const handleSubmit = () => {
 </script>
 
 <style>
-
+.signIn{
+  font-weight: 900;
+  font-size: 13px;
+}
 </style>
