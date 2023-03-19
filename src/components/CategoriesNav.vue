@@ -16,7 +16,7 @@ import { ref } from "vue";
 
 //Register or defineProps
 const props = defineProps({
-    data: Object
+    data: Array
 })
 
 //Register emit
@@ -28,7 +28,7 @@ const categoriesA = ref([])
 
 onMounted(() => {
     //Filter the array to get unique category
-    const categories = props.data.products.map(each => each.category);
+    const categories = props.data.map(each => each.category);
     const uniqueCategories = [...new Set(categories)];
     uniqueCategories.unshift("all");
     categoriesA.value = uniqueCategories;
