@@ -14,19 +14,20 @@
         <RouterLink to="/signup" v-if="!isAuthenticated">
           <div class="nestedRoutes">
             <small> Hello, Sign up</small>
-            <h4 class="h4">Accounts and Lists</h4>
+            <h4 class="h4">Accounts & Lists</h4>
           </div>
         </RouterLink>
-        <RouterLink to="/login" v-else-if="path === 'signup'">
+        <RouterLink to="/login" v-else-if="isSignup">
           <div class="nestedRoutes">
             <small> Hello, Login</small>
-            <h4 class="h4">Accounts and Lists</h4>
+            <h4 class="h4">Accounts & Lists</h4>
           </div>
         </RouterLink>
-        <RouterLink to="/" v-else>
+        <RouterLink to="/signOut" v-else>
           <div class="nestedRoutes">
-            <small> Hello, Peace</small>
-            <h4 class="h4">Accounts and Lists</h4>
+            <small> Hello, {{ }}</small>
+            <p>{{ user }}</p>
+            <h4 class="h4">Accounts & Log-out</h4>
           </div>
         </RouterLink>      
       </div>
@@ -39,18 +40,10 @@
         </RouterLink>
       </div>
       <div class="navLink">
-        <RouterLink to="/signOut" v-show="isAuthenticated">
-          <div class="nestedRoutes">
-            <small> SignOut</small>
-            <h4 class="h4">Accounts and Lists</h4>
-          </div>
-        </RouterLink>
-      </div>
-      <div class="navLink">
         <RouterLink to="/cart" v-show="isAuthenticated">
           <div class="nestedRoutes">
             <small> cart</small>
-            <h4 class="h4">Accounts and Lists</h4>
+            <h4 class="h4">Accounts & Lists</h4>
           </div>
         </RouterLink>
       </div>
@@ -59,13 +52,17 @@
 </template>
 <script setup>
 import { computed } from "vue";
-// import { useRoute } from "vue-router";
+import { getCurrentlyLoggedInUser } from "../composables/getcurrentuser";
+import { useRoute } from "vue-router";
+
+const route = useRoute()
+const isSignup = computed(() => route.path === "/signup")
+const { user } = getCurrentlyLoggedInUser();
 
 //Check for authentication
 const isAuthenticated = computed(() => !!localStorage.getItem("token"));
 
 //get route path
-
 
 </script>
 <style>
@@ -127,6 +124,11 @@ nav {
   font-size: 11.5px;
   color: rgb(188, 181, 181);
 }
+
+.nestedRoutes{
+  padding: 9px;
+}
+
 .h4 {
   font-size: 12px;
   font-weight: 900;

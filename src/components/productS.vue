@@ -1,22 +1,22 @@
-
 <template>
     <CategoriesNav :data="data" @fetchCategory="fetchCategory($event)" />
       <div
       class="products"
       v-for="product in data"
       :key="product.id">
-      <h2>{{ product.title }}</h2>
+      <h2>{{ product}}</h2>
     </div>
 </template>
 <script setup>
 /* eslint-disable */
-// import { useFetch } from "../Fetch";
+import { useFetch } from "../composables/Fetch";
 import CategoriesNav from "../components/CategoriesNav.vue";
-import { ref } from "vue";
+import { ref, onBeforeMount } from "vue";
 
 //set states
 const data = ref([]);
 const loading = ref(true);
+
 
 //function to get data
 const getData =  async() =>{
@@ -31,16 +31,19 @@ const getData =  async() =>{
   }
 }
 
-console.log(data.value)
-
 await getData();
 
 //function to update endpoint based on category
-const fetchCategory = (event) => {
+const fetchCategory = async(event) => {
+  loading.value = true;
+  const { products, load, error, getData } = await useFetch(`https://dummyjson.com/products/category/${event}`)
 
-  console.log(event);
+  if (products) {
+    data.value = products;
+    loading.value = load.value;
+  }
 };
-</script>
 
+</script>
 
 <style></style>
