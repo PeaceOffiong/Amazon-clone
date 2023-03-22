@@ -27,9 +27,9 @@
         </RouterLink>
       </div>
       <div class="navLink" v-else>
-        <RouterLink to="/signOut" >
+        <RouterLink to="/signOut">
           <div class="nestedRoutes">
-            <small> Hello, {{user}}</small>
+            <small> Hello, {{ result }}</small>
             <p>{{ user }}</p>
             <h4 class="h4">Accounts & Log-out</h4>
           </div>
@@ -46,8 +46,8 @@
       <div class="navLink">
         <RouterLink to="/cart" v-show="isAuthenticated">
           <div class="nestedRoutes icon">
-            <font-awesome-icon :icon="['fas', 'cart-plus']" class="iconn"/>
-            <h4> cart</h4>
+            <font-awesome-icon :icon="['fas', 'cart-plus']" class="iconn" />
+            <h4>cart</h4>
           </div>
         </RouterLink>
       </div>
@@ -55,19 +55,19 @@
   </nav>
 </template>
 <script setup>
-import { computed} from "vue";
-import { getCurrentlyLoggedInUser } from "../composables/getcurrentuser";
+import { computed } from "vue";
+import { getValueFromLocalStorage } from "../composables/getcurrentuser";
 import { useRoute } from "vue-router";
-
 
 const route = useRoute();
 const isSignup = computed(() => route.path === "/signup");
-const { user } = getCurrentlyLoggedInUser();
+const { result } = getValueFromLocalStorage("username");
 
 //Check for authentication
 const isAuthenticated = computed(() => !!localStorage.getItem("token"));
 
-//get route path
+
+
 </script>
 <style>
 nav {
@@ -139,18 +139,22 @@ nav {
   color: white;
 }
 
-.nestedRoutes.icon
-{
+.nestedRoutes.icon {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.iconn{
-  width: 40px;
-  height: 40px;
+.nestedRoutes.icon h4 {
   color: white;
-
+  align-self: flex-end;
+  font-size: 12px;
+  text-transform: capitalize;
 }
 
+.iconn {
+  width: 35px;
+  height: 35px;
+  color: white;
+}
 </style>

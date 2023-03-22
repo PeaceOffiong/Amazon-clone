@@ -55,8 +55,8 @@ const router = createRouter({
         // else if (isAuthenticated()) {
         //   router.push({ name: "productsPage" });
 
-          // console.log("yea")
-          // console.log(`to: ${to}, from: ${from}, next: ${next}`)
+        // console.log("yea")
+        // console.log(`to: ${to}, from: ${from}, next: ${next}`)
         // }
       },
     },
@@ -81,7 +81,7 @@ const router = createRouter({
       },
     },
     {
-      path: "/*",
+      path: "/:catchAll(.*)",
       name: "NotFound",
       component: () => import("../views/404Page.vue"),
     },

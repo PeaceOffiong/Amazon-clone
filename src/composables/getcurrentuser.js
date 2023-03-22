@@ -1,14 +1,12 @@
-import { ref } from "vue";
 
-export const getCurrentlyLoggedInUser = () => {
-    const user = ref("");
 
-    function currentuser() {
-        const currentUser = localStorage
-            .getItem("username")
-            .split(" ")
-            .slice(0, 1);
-        user.value = currentUser;
+export const getValueFromLocalStorage = (key) => {
+    const defaultName = "Jane "
+    const item = key;
+    const result = localStorage.getItem(item)
+    if (result) {
+        result.split(" ").splice(0, 1);
+        return { result }
     }
-    return {user, currentuser};
-}
+    return { defaultName };
+} 
