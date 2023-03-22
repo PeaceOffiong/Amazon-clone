@@ -10,29 +10,33 @@
       </RouterLink>
     </div>
     <div class="right">
-      <div class="navLink">
-        <RouterLink to="/signup" v-if="!isAuthenticated">
+      <div class="navLink" v-if="!isAuthenticated && !isSignup">
+        <RouterLink to="/signup">
           <div class="nestedRoutes">
             <small> Hello, Sign up</small>
             <h4 class="h4">Accounts & Lists</h4>
           </div>
         </RouterLink>
-        <RouterLink to="/login" v-else-if="isSignup">
+      </div>
+      <div class="navLink" v-else-if="isSignup">
+        <RouterLink to="/login">
           <div class="nestedRoutes">
             <small> Hello, Login</small>
             <h4 class="h4">Accounts & Lists</h4>
           </div>
         </RouterLink>
-        <RouterLink to="/signOut" v-else>
+      </div>
+      <div class="navLink" v-else>
+        <RouterLink to="/signOut" >
           <div class="nestedRoutes">
-            <small> Hello, {{ }}</small>
+            <small> Hello, {{user}}</small>
             <p>{{ user }}</p>
             <h4 class="h4">Accounts & Log-out</h4>
           </div>
-        </RouterLink>      
+        </RouterLink>
       </div>
       <div class="navLink">
-         <RouterLink to="/returnPolicy" v-show="isAuthenticated">
+        <RouterLink to="/returnPolicy" v-show="isAuthenticated">
           <div class="nestedRoutes">
             <small> Returns</small>
             <h4 class="h4">& Orders</h4>
@@ -41,9 +45,9 @@
       </div>
       <div class="navLink">
         <RouterLink to="/cart" v-show="isAuthenticated">
-          <div class="nestedRoutes">
-            <small> cart</small>
-            <h4 class="h4">Accounts & Lists</h4>
+          <div class="nestedRoutes icon">
+            <font-awesome-icon :icon="['fas', 'cart-plus']" class="iconn"/>
+            <h4> cart</h4>
           </div>
         </RouterLink>
       </div>
@@ -51,19 +55,19 @@
   </nav>
 </template>
 <script setup>
-import { computed } from "vue";
+import { computed} from "vue";
 import { getCurrentlyLoggedInUser } from "../composables/getcurrentuser";
 import { useRoute } from "vue-router";
 
-const route = useRoute()
-const isSignup = computed(() => route.path === "/signup")
+
+const route = useRoute();
+const isSignup = computed(() => route.path === "/signup");
 const { user } = getCurrentlyLoggedInUser();
 
 //Check for authentication
 const isAuthenticated = computed(() => !!localStorage.getItem("token"));
 
 //get route path
-
 </script>
 <style>
 nav {
@@ -92,7 +96,7 @@ nav {
   border: 1px solid white;
 }
 
-.right{
+.right {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -125,7 +129,7 @@ nav {
   color: rgb(188, 181, 181);
 }
 
-.nestedRoutes{
+.nestedRoutes {
   padding: 9px;
 }
 
@@ -134,4 +138,19 @@ nav {
   font-weight: 900;
   color: white;
 }
+
+.nestedRoutes.icon
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.iconn{
+  width: 40px;
+  height: 40px;
+  color: white;
+
+}
+
 </style>
