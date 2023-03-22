@@ -1,1 +1,1 @@
-Hosted App : https://amazon-mini-clone.netlify.app/login
+Hosted App : https://amazon-mini-clone.netlify.app/
