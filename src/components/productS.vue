@@ -7,16 +7,11 @@
       <router-link :to="'/product/' + product.id" class="link">
         <img :src="product.images[0]" :alt="product.title"  class="image"/>
         <div class="mini-details">
-          <h4 class="title">
+        <p class="title">
             {{ product.title
-            }}<span>
-              -
-              <p class="description">
-                {{ product.description }}
-              </p></span
-            >
-          </h4>
-          <p class="rating">{{ product.rating }}</p>
+            }} - {{ product.description }}
+          </p>
+          <p class="rating">Rating {{ product.rating }}</p>
           <span>
             <h2 class="price">${{ product.price }}</h2>
             <small class="discountpercentage">
@@ -88,7 +83,7 @@ const fetchCategory = async (event) => {
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0px 12px 0px -6px rgba(242,240,240,0.75);
-  border: 1px groove rgba(242,240,240,0.75);
+  border: 2px solid rgba(242,240,240,0.75);
 } 
 
 .link{
@@ -105,9 +100,13 @@ const fetchCategory = async (event) => {
 
 .mini-details{
   height: 50%;
-  border-top: 1px groove rgba(238, 233, 233, 0.75);
-  background-color: rgb(251, 251, 251);
+  border-top: 2px solid rgba(232, 226, 226, 0.75);
+  background-color: rgba(0, 0, 0, 0.03);
+  color: black;
+ padding: 10px;
+ line-height: 1.4em;
 }
+
 
 
 </style>
