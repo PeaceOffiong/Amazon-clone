@@ -52,13 +52,12 @@ const router = createRouter({
         if (!isAuthenticated()) {
           router.push({ name: "loginPage" });
         }
-        // else if (isAuthenticated()) {
-        //   router.push({ name: "productsPage" });
-
-        // console.log("yea")
-        // console.log(`to: ${to}, from: ${from}, next: ${next}`)
-        // }
       },
+    },
+    {
+      path: "/products/:name",
+      name: "ProductPage",
+      component: ProductPage,
     },
     {
       path: "/login",
