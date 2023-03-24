@@ -1,12 +1,5 @@
 <template>
-  <Suspense>
-    <template #default>
-      <ProductS />
-    </template>
-    <template #fallback>
-      <h3>Loading</h3>
-    </template>
-  </Suspense>
+  <ProductS />
 </template>
 
 <script setup>

@@ -1,36 +1,28 @@
-import {
-    ref,
-    isRef,
-    unref,
-    watchEffect
-} from "vue";
+import { ref, onMounted } from "vue";
+import axios from "axios";
 
-export function useFetch(url) {
-  //setting state managed by composable
-  const products = ref([]);
-  const load = ref(true);
+export  function useFetchData(url) {
+  const datas = ref(null);
+  const isLoading = ref(false);
   const error = ref(null);
 
-  //function to fetch data
-  function getData() {
-    //reset state
-    products.value = null;
-    load.value = null;
-    error.value = null;
-
-    // unref()
-    fetch(unref(url))
-      .then((res) => res.json())
-      .then((json) => (products.value = json.products))
-      .then(() => (load.value = false))
-      .catch((err) => (error.value = err))
+  async function fetchData() {
+    isLoading.value = true;
+    try {
+      const response = await axios.get(url);
+      datas.value = response.data;
+    } catch (err) {
+      error.value = err;
+    }
+    isLoading.value = false;
   }
 
-  if (isRef(url)) {
-    watchEffect(getData);
-  } else {
-    getData();
-  }
+  // onMounted(fetchData);
 
-  return { products, load, error, getData};
+  return {
+    data,
+    isLoading,
+    error,
+    fetchData
+  };
 }

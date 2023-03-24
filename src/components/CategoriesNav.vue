@@ -20,10 +20,10 @@ const props = defineProps({
 })
 
 //Register emit
-const emit = defineEmits(['fetchCategory'])
+const emit = defineEmits(['fetchCategoryData'])
 
 //set State for Categories
-const categoriesA = ref([])
+const categoriesA = ref([]);
 
 
 onMounted(() => {
@@ -36,7 +36,7 @@ onMounted(() => {
 
 //function to handleclick
 const handleClick = (e) => {
-    emit("fetchCategory", e.target.innerText)
+    emit("fetchCategoryData", e.target.innerText)
 }
 
 </script>
