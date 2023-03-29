@@ -1,4 +1,4 @@
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import axios from "axios";
 
 export  function useFetchData(url) {
@@ -20,7 +20,7 @@ export  function useFetchData(url) {
   // onMounted(fetchData);
 
   return {
-    data,
+    datas,
     isLoading,
     error,
     fetchData

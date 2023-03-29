@@ -28,6 +28,11 @@ const router = createRouter({
           },
         },
         {
+          path: "products/:name",
+          name: "productPage",
+          component: ProductPage,
+        },
+        {
           path: "cart",
           name: "cartItems",
           component: cartItems,
@@ -42,22 +47,12 @@ const router = createRouter({
           name: "signOut",
           component: () => import("../views/signOut"),
         },
-        {
-          path: "/product/:id",
-          name: "Product",
-          component: ProductPage,
-        },
       ],
       beforeEnter: () => {
         if (!isAuthenticated()) {
           router.push({ name: "loginPage" });
         }
       },
-    },
-    {
-      path: "/products/:name",
-      name: "ProductPage",
-      component: ProductPage,
     },
     {
       path: "/login",

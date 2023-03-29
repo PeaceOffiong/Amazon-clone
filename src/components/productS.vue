@@ -9,7 +9,14 @@
     <div class="productsContainer">
       <div class="products" v-for="product in tempData.products" :key="product.id">
         <div class="productContainer">
-          <router-link :to="'/product/' + product.id" class="link">
+          <router-link 
+          :to="{
+            name: 'productPage',
+            params:{
+              //since the api doesnt provide for distinctive ids in both category and all http request the only distinctive objectValue is the name
+              name: product.title,
+            }
+          }" class="link">
             <img :src="product.images[0]" :alt="product.title" class="image"/>
             <div class="mini-details">
               <p class="title">
@@ -34,7 +41,7 @@
 import CategoriesNav from "../components/CategoriesNav.vue";
 import { ref, onMounted } from "vue";
 import axios from "axios";
-import defaultImage from "../assets/defaultimg.png";
+// import defaultImage from "../assets/defaultimg.png";
 
 
 //set states
