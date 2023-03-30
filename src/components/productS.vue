@@ -14,7 +14,7 @@
             name: 'productPage',
             params:{
               //since the api doesnt provide for distinctive ids in both category and all http request the only distinctive objectValue is the name
-              name: product.title,
+              id: product.id,
             }
           }" class="link">
             <img :src="product.images[0]" :alt="product.title" class="image"/>
