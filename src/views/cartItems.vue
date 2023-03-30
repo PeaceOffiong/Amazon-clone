@@ -1,5 +1,17 @@
 <template>
-    <h1>Cart container</h1>
+  <h1>{{ cartList }}</h1>
 </template>
-<script></script>
+
+<script setup>
+import { defineProps, ref } from "vue";
+
+const props = defineProps({
+  cartItems: {
+    type: Array,
+  },
+});
+
+const cartList = ref(props.cartItems);
+</script>
+
 <style></style>

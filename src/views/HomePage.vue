@@ -1,18 +1,23 @@
 <template>
   <Navbar />
-  <ProductsPage v-if="isHomePage" />
-  <RouterView />
+  <ProductsPage v-if="isHomePage" @updatecartItems="handleUpdate($newCartList)"/>
+  <RouterView :cartItems ="cartItems" />
 </template>
 
 <script setup>
 import Navbar from "../components/navBar.vue";
 import ProductsPage from "./ProductsPage.vue";
 import { useRoute } from "vue-router";
-import { computed } from "vue";
+import { computed, ref } from "vue";
 
 const route = useRoute();
 
 const isHomePage = computed(() => route.path === "/");
 
-console.log(isHomePage);
+const cartItems = ref([]);
+
+const handleUpdate = (newCartList) => {
+  cartItems.value = newCartList;
+}
+
 </script>
