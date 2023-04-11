@@ -38,8 +38,8 @@
       <div class="navLink">
         <RouterLink to="/returnPolicy" v-show="isAuthenticated">
           <div class="nestedRoutes">
-            <small> Returns</small>
-            <h4 class="h4">& Orders</h4>
+            <small> Rate Me</small>
+            <h4 class="h4">& Others</h4>
           </div>
         </RouterLink>
       </div>
